@@ -48,7 +48,7 @@ async function buscarRecadoIdApi(url: string): Promise<string> {
 
 async function excluirRecadoApi(url: string): Promise<string> {
   try {
-    const response = await api.delete(`${url}`);
+    const response = await api.delete(`/recado/${url}`);
     console.log(response.data);
     return response.data;
   } catch (err) {
