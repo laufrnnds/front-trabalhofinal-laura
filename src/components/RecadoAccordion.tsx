@@ -118,17 +118,23 @@ const RecadoAccordion: React.FC<RecadoAccordionProps> = ({
       >
         <BoxTxt>
           <TypographyStyled variant="body1">
-            {dado.id_recado}# {dado.descricao}
+            {dado.id_recado} # {dado.descricao}
           </TypographyStyled>
 
-          <TypographyStyled
-            variant="body1"
-            sx={{
-              paddingRight: "30px",
-            }}
-          >
-            Status: {status}
-          </TypographyStyled>
+          <Box>
+            <TypographyStyled variant="body1">
+              {dado.user.id_usuario}
+            </TypographyStyled>
+
+            <TypographyStyled
+              variant="body1"
+              sx={{
+                paddingRight: "30px",
+              }}
+            >
+              Status: {dado.status}
+            </TypographyStyled>
+          </Box>
         </BoxTxt>
       </AccordionSummary>
       <AccordionDetails sx={{ overflowY: "auto", marginTop: "5px" }}>
