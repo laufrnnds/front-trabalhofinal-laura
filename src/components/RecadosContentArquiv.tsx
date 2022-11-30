@@ -14,25 +14,25 @@ const RecadosContentArquiv: React.FC = () => {
   const [idUsuario, setIdUsuario] = useState(0);
 
   const num = Number(window.localStorage.getItem("idUser"));
-  useEffect(() => {
-    listaArquivados.forEach((recado) => {
-      setIdUsuario(num);
-      if (recado.user.id_usuario === idUsuario) {
-        const novaLista = [...listaUser, recado];
-        setListaUser(novaLista);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   listaArquivados.forEach((recado) => {
+  //     setIdUsuario(num);
+  //     if (recado.user.id_usuario === idUsuario) {
+  //       const novaLista = [...listaUser, recado];
+  //       setListaUser(novaLista);
+  //     }
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    listaArquivados.forEach((recado) => {
-      setIdUsuario(num);
-      if (recado.user.id_usuario === idUsuario) {
-        const novaLista = [...listaUser, recado];
-        setListaUser(novaLista);
-      }
-    });
-  }, [listaArquivados]);
+  // useEffect(() => {
+  //   listaArquivados.forEach((recado) => {
+  //     setIdUsuario(num);
+  //     if (recado.user.id_usuario === idUsuario) {
+  //       const novaLista = [...listaUser, recado];
+  //       setListaUser(novaLista);
+  //     }
+  //   });
+  // }, [listaArquivados]);
 
   return (
     <Box sx={{ width: "50%", margin: "30px" }}>
@@ -41,14 +41,16 @@ const RecadosContentArquiv: React.FC = () => {
           <>
             {listaArquivados.length > 0 ? (
               listaArquivados.map((recado) => {
-                return (
-                  <RecadoAccordion
-                    key={recado.id_recado}
-                    dado={recado}
-                    color={defaultTheme.palette.secondary.light}
-                    arquivado={true}
-                  />
-                );
+                if (recado.user.id_usuario === num) {
+                  return (
+                    <RecadoAccordion
+                      key={recado.id_recado}
+                      dado={recado}
+                      color={defaultTheme.palette.secondary.light}
+                      arquivado={true}
+                    />
+                  );
+                }
               })
             ) : (
               <Typography
