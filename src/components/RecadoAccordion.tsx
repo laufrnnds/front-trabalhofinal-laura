@@ -75,7 +75,6 @@ const RecadoAccordion: React.FC<RecadoAccordionProps> = ({
   }, [listaArquivados]);
 
   const handleEditar = () => {
-    console.log("entrou editar");
     dispatch(selecionarRecado(dado));
     dispatch(checkBotoes(false));
     dispatch(checkForm(true));

@@ -98,7 +98,6 @@ const Formulario: React.FC = () => {
       status: status,
       user: { id_usuario: idUsuario },
     };
-    console.log(novoRecado);
     dispatch(atualizarRecado(novoRecado));
     dispatch(checkForm(false));
     dispatch(buscarRecados());

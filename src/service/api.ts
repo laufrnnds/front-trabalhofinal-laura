@@ -65,12 +65,13 @@ async function atualizarRecadoApi(
       descricao: data.descricao,
       detalhamento: data.detalhamento,
       status: data.status,
-      user: { id_usuario: Number(data.user) },
+      user: { id_usuario: data.user.id_usuario },
     };
     const response = await api.put(`${url}`, dataRequest);
     console.log(response.data);
     return response.data;
   } catch (err) {
+    console.log(err);
     return {
       id_recado: 0,
       detalhamento: "",

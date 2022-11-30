@@ -4,40 +4,56 @@ import { Box } from "@mui/material";
 import { useAppSelector } from "../store/hooks";
 import { selectAll } from "../store/Recados/RecadosSlice";
 import defaultTheme from "../config/theme/Default";
-import { Recado } from "../store/Recados/types";
+import { Recado, RecadoAtualizado, RecadoCriado } from "../store/Recados/types";
 
 const RecadosContent: React.FC = () => {
   const listaRecados = useAppSelector(selectAll);
-  const listaUser: Recado[] = [];
+  const [listaUser, setListaUser] = useState<Recado[]>([]);
   const [idUsuario, setIdUsuario] = useState(0);
+
+  const num = Number(window.localStorage.getItem("idUser"));
+  // useEffect(() => {
+  //   listaRecados.map((recado) => {
+  //     setIdUsuario(num);
+  //     if (recado.user.id_usuario === num) {
+  //       const novaLista = [...listaUser, recado];
+  //       setListaUser(novaLista);
+  //     }
+  //   });
+  // }, []);
+
   useEffect(() => {
-    setIdUsuario(Number(window.localStorage.getItem("idUser")));
-    listaRecados.forEach((recado) => {
-      console.log(recado);
-      if (recado.id_recado === idUsuario) {
-        console.log("é do user");
-        listaUser.push(recado);
+    listaRecados.map((recado) => {
+      setIdUsuario(num);
+      console.log("NUM");
+      console.log(num);
+      console.log("USER ID RECADO");
+      console.log(recado.user.id_usuario);
+      if (recado.user.id_usuario === num) {
+        const novaLista: Recado[] = [...listaUser, recado];
+        setListaUser(novaLista);
+        console.log("RECADO");
+        console.log(recado);
+
+        console.log("LISTA USER");
+        console.log(listaUser);
+        console.log("LISTA USER TAMANHO");
+        console.log(listaUser.length);
       }
     });
-    console.log(listaUser);
   }, []);
-
   return (
     <Box sx={{ width: "50%", margin: "30px" }}>
-      <Box>
-        {listaRecados.map((recado) => {
-          // if (recado.id_recado === idUsuario) {
-          return (
-            <RecadoAccordion
-              key={recado.id_recado}
-              dado={recado}
-              color={defaultTheme.palette.secondary.main}
-              arquivado={false}
-            />
-          );
-          // }
-        })}
-      </Box>
+      {listaRecados.map((recado) => {
+        return (
+          <RecadoAccordion
+            key={recado.id_recado}
+            dado={recado}
+            color={defaultTheme.palette.secondary.main}
+            arquivado={false}
+          />
+        );
+      })}
     </Box>
   );
 };

@@ -46,7 +46,7 @@ export const atualizarRecado = createAsyncThunk(
   "recados/atualizarRecado",
   async (dado: Recado) => {
     const { id_recado } = dado;
-    const url = `/${id_recado}`;
+    const url = `/recado/${id_recado}`;
     const response = await atualizarRecadoApi(url, dado);
     return response;
   }
