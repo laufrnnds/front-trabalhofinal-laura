@@ -88,6 +88,7 @@ const Formulario: React.FC = () => {
     dispatch(checkForm(false));
     dispatch(checkBotoes(true));
     dispatch(checkMostrar(false));
+    dispatch(buscarRecados());
   }
 
   function handleEditar() {

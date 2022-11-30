@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import { Typography, Box, Button } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import Formulario from "../../components/Formulario";
 import Header from "../../components/Header";
 import RecadosContent from "../../components/RecadosContent";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { buscarRecados } from "../../store/Recados/RecadosSlice";
 import Filtragem from "../../components/Filtragem";
-import defaultTheme from "../../config/theme/Default";
 import { checkMostrar, selectMostrar } from "../../store/Mostrar/MostrarSlice";
 import FileDownloadOffIcon from "@mui/icons-material/FileDownloadOff";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import ButtonStyled from "../../components/ButtonStyled";
 import RecadosContentArquiv from "../../components/RecadosContentArquiv";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const estadoMostrar = useAppSelector(selectMostrar).mostrou;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(buscarRecados());
@@ -29,6 +30,11 @@ const Home: React.FC = () => {
 
   const handleNaoArquivados = () => {
     dispatch(checkMostrar(false));
+  };
+
+  const handleLogout = () => {
+    navigate("/");
+    window.localStorage.setItem("idUser", `0`);
   };
 
   return (
@@ -44,6 +50,17 @@ const Home: React.FC = () => {
       }}
     >
       <Header />
+      <Box
+        sx={{
+          width: "90%",
+          display: "flex",
+          flexDirection: "row-reverse",
+          alignItems: "start",
+          paddingTop: "10px",
+        }}
+      >
+        <ButtonStyled icon={<LogoutIcon />} txt="Sair" onClick={handleLogout} />
+      </Box>
       <Typography
         variant="h3"
         align="center"

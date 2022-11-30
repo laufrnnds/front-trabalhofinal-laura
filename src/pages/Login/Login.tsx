@@ -90,7 +90,7 @@ const Login: React.FC = () => {
             height: "100%",
             marginBottom: "10px",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
           }}
@@ -117,23 +117,12 @@ const Login: React.FC = () => {
             value={senha}
           />
         </Box>
-        <Box
-          sx={{
-            width: "70%",
-            height: "100%",
-            marginBottom: "10px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <ButtonStyled
-            icon={<LoginIcon />}
-            txt="Entrar"
-            onClick={handleEntrar}
-          />
-        </Box>
+
+        <ButtonStyled
+          icon={<LoginIcon />}
+          txt="Entrar"
+          onClick={handleEntrar}
+        />
 
         <ButtonStyled
           icon={<PersonAddIcon />}
